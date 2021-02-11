@@ -1,0 +1,32 @@
+Package: mexicoR
+Type: Package
+Title: easy_Mexico functions for lolo7no
+Version: 0.1.2
+Author: lolo7no
+Maintainer: lolo7no <lorenzoln@gmail.com>
+Description: lolo's excellent package moderator and easy functions along with 
+    amazing already there data and downloaders. 
+    Moderador de paquetes y funciones para resolver la mayoría de los problemas
+    cuando quieres utilizar datos de mexico. Contiene, datos, descargadores y 
+    funciones
+License: GPNU
+Encoding: UTF-8
+LazyData: true
+Depends:
+  R (>= 3.1.0),
+  sf,
+  tidyverse (>= 1.3.0),
+  rvest,
+  ggtext,
+  hrbrthemes,
+  tidytext,
+  ggrepel,
+  stringi,
+  stringr,
+  ggthemes,
+  lubridate,
+  RColorBrewer,
+  ggnewscale,
+  zoo,
+  srvyr
+RoxygenNote: 7.1.1
