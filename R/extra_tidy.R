@@ -21,7 +21,7 @@ group_and_ponder_by <- function(.tabla, .variable_a_pond, .ponderador, ...){
   .tabla%>%
     ungroup() %>%
     filter(across(c(!!!group_vars,!!variable_a_pond), ~!is.na(.))) %>%
-    filter(across (starts_with("f_"), ~. == "Sí"))  %>%
+    filter(across (starts_with("f_"), ~!stri_detect(., fixed = "no", case_insensitive = T)))  %>%
     as_survey_design(probs = !!ponderador) %>%
     srvyr::group_by(!!!group_vars,!!variable_a_pond, .drop = T) %>%
     summarise(v_tot = survey_total(na.rm = T, vartype = "se", levels = 0.95),
