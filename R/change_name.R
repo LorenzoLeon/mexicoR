@@ -106,6 +106,7 @@ entidad_to_abr <- function(entidad) {
     y == "Quintana Roo" ~ "QUI",
     y == "Sonora" ~ "SON",
     y == "Cdmx" ~ "CDM",
+    y == "Distrito Federal" ~ "CDM",
     y == "Ciudad De Mexico" ~ "CDM",
     y == "Veracruz De Ignacio De La Llave" ~ "VER",
     y == "Veracruz" ~ "VER",
