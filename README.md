@@ -2,6 +2,10 @@
 
 En este repositorio hemos recolectado distintas funciones y documentos para procesar, analizar y visualizar datos de México.
 
+## Funciones 
+
+1.  
+
 ## Sahpefiles de México
 
 1.  [Mapas electorales de México de 2020](<https://drive.google.com/drive/folders/135yT_-xH_f0G-jbRen3XNlI8Vql0ekB0>)
