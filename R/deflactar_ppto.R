@@ -1,6 +1,8 @@
 u <- Sys.setlocale("LC_ALL", "es_ES.UTF-8")
 
-#' Deflactar montos con deflactor de Transparencia Presupuestaria. 
+#' Deflactar montos 
+#' 
+#' Esa función deflacta montos descargando la última versión de deflactores publicada por Transparencia presupuestaria.
 #'
 #' @param monto monto que se quiere deflactar
 #' @param year_monto año de origen del monto (para que funciones tiene que ser

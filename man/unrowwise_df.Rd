@@ -2,7 +2,7 @@
 % Please edit documentation in R/manage_objects.R
 \name{unrowwise_df}
 \alias{unrowwise_df}
-\title{Desagrupar por fila en caso de haber usado rowwise}
+\title{Desagrupar por fila}
 \usage{
 unrowwise_df(data)
 }
@@ -13,5 +13,6 @@ unrowwise_df(data)
 dataframe sin agrupación
 }
 \description{
-Desagrupar por fila en caso de haber usado rowwise
+Esta función sirve para desagrupar un dataframe agrupado por 
+fila (dplyr::rowwise()).
 }

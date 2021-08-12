@@ -16,5 +16,6 @@ asigna ninguno, se guardará como obj_guardado .}
 el mismo objeto y guarda un nuevo objeto con el nombre de bd_guardada
 }
 \description{
-Guardar base de datos en nuevo objeto
+Esta función sirve para guardar un objeto  tal como está en cierto punto  
+de una secuencia de pipas.
 }

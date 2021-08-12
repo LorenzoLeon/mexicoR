@@ -1,6 +1,9 @@
 u <- Sys.setlocale("LC_ALL", "es_ES.UTF-8")
 
-#' Desagrupar por fila en caso de haber usado rowwise
+#' Desagrupar por fila 
+#' 
+#' Esta función sirve para desagrupar un dataframe agrupado por 
+#' fila (dplyr::rowwise()).
 #'
 #' @param data dataframe agrupado por fila
 #'
@@ -15,6 +18,9 @@ unrowwise_df <- function(data) {
 }
 
 #' Guardar base de datos en nuevo objeto
+#' 
+#' Esta función sirve para guardar un objeto  tal como está en cierto punto  
+#' de una secuencia de pipas.
 #'
 #' @param data cualquier objeto
 #' @param nombre string que se le asigna como nombre al objeto. Si no se 
@@ -22,8 +28,6 @@ unrowwise_df <- function(data) {
 #'
 #' @return el mismo objeto y guarda un nuevo objeto con el nombre de bd_guardada
 #' @export
-#'
-#' @examples
 guardar_obj <- function(data, nombre = "obj_guardado") {
   
   assign(nombre, 
