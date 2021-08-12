@@ -1,4 +1,4 @@
-u <- Sys.setlocale("LC_TIME", "Spanish")
+u <- Sys.setlocale("LC_ALL", "es_ES.UTF-8")
 
 #' Deflactar montos con deflactor de Transparencia Presupuestaria
 #'
