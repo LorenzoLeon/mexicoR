@@ -1,42 +1,83 @@
 u <- Sys.setlocale("LC_ALL", "es_ES.UTF-8")
 
-#' Deflactar montos con deflactor de Transparencia Presupuestaria
+#' Deflactar montos con deflactor de Transparencia Presupuestaria. 
 #'
 #' @param monto monto que se quiere deflactar
-#' @param year_monto año de origen del monto
-#' @param year_out año del precio al que se quiere deflactar
+#' @param year_monto año de origen del monto (para que funciones tiene que ser
+#' entre 1994 y 2030)
+#' @param year_out año del precio al que se quiere deflactar (para que funciones tiene que ser
+#' entre 1994 y 2030)
 #'
 #' @importFrom magrittr %>%
 #' @return regresa un vector de los montos deflactados
 #' @export
 deflactar_tp <- function(monto, year_monto, year_out) {
   
+  if (year_monto > 2030 |
+      year_monto < 1994) {
+    
+    warning("year_monto supera el rango de años disponible. La cifra no fue deflactada.")
+    
+    return(monto)
+    
+    break
+    
+    }
+  
+  if (year_out > 2030 |
+      year_out < 1994) {
+    warning("year_out supera el rango de años disponible. La cifra no fue deflactada.")
+    
+    return(monto)
+    
+    break
+    
+  }
+  
+  if (year_out == year_monto) {
+    warning("year_out y year_monto son iguales.")
+    
+    return(monto)
+    
+    break
+    
+  }
+  
   if (!exists("deflactor") || 
       !(c("year") %in% colnames(deflactor)) ||
       !(c("deflactor_2013") %in% colnames(deflactor))) {
     
     temp = tempfile(fileext = ".xlsx")
+    
     dataURL <- "https://www.transparenciapresupuestaria.gob.mx/work/models/PTP/Presupuesto/Programacion/Deflactores/Deflactores_PIB.xlsx"
+    
     download.file(dataURL, destfile = temp, mode = 'wb')
     
     deflactor <<- readxl::read_excel(temp,
-                             skip = 3) %>% 
+                             range = "B4:O38") %>%
       janitor::clean_names() %>% 
-      dplyr::transmute(year = as.numeric(periodo), 
-                # cres_deflactror = crecimiento_anual_deflactor_del_pib,
-                deflactor_2013 = deflactor_del_pib_base_2013) %>% 
+      dplyr::rename(deflactor_year = starts_with("deflactor_del_pib")) %>% 
+      dplyr::transmute(year = as.numeric(periodo),
+                       deflactor_year) %>% 
       dplyr::filter(!is.na(year)) 
     
   }
   
-  deflactor_out <- deflactor[deflactor$year == as.numeric(year_out), ]$deflactor_2013
-  deflactor_monto <- deflactor[deflactor$year == as.numeric(year_monto),]$deflactor_2013
+  deflactor_out <- try(purrr::map_dbl(year_out,
+                              function(x)deflactor[deflactor$year %in% as.numeric(x), ]$deflactor_year),
+                       silent = T)
+  
+  if(class(deflactor_out) == "try-error"){deflactor_out <- 1}
+  
+  deflactor_monto <- try(purrr::map_dbl(year_monto,
+                                function(x)deflactor[deflactor$year %in% as.numeric(x), ]$deflactor_year),
+                         silent = T)
+  
+  if(class(deflactor_monto) == "try-error"){deflactor_monto <- 1}
   
   monto_deflactado <- (monto*deflactor_out)/deflactor_monto
   
   return(monto_deflactado)
 
 }
-
-deflactar_tp <- Vectorize(deflactar_tp)
 

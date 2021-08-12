@@ -2,20 +2,22 @@
 % Please edit documentation in R/deflactar_ppto.R
 \name{deflactar_tp}
 \alias{deflactar_tp}
-\title{Deflactar montos con deflactor de Transparencia Presupuestaria}
+\title{Deflactar montos con deflactor de Transparencia Presupuestaria.}
 \usage{
 deflactar_tp(monto, year_monto, year_out)
 }
 \arguments{
 \item{monto}{monto que se quiere deflactar}
 
-\item{year_monto}{año de origen del monto}
+\item{year_monto}{año de origen del monto (para que funciones tiene que ser
+entre 1994 y 2030)}
 
-\item{year_out}{año del precio al que se quiere deflactar}
+\item{year_out}{año del precio al que se quiere deflactar (para que funciones tiene que ser
+entre 1994 y 2030)}
 }
 \value{
 regresa un vector de los montos deflactados
 }
 \description{
-Deflactar montos con deflactor de Transparencia Presupuestaria
+Deflactar montos con deflactor de Transparencia Presupuestaria.
 }
