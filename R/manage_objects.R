@@ -24,7 +24,7 @@ unrowwise_df <- function(data) {
 #' @export
 #'
 #' @examples
-guardar <- function(data, nombre = "obj_guardado") {
+guardar_obj <- function(data, nombre = "obj_guardado") {
   
   assign(nombre, 
          data,
