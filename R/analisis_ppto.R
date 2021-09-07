@@ -14,8 +14,11 @@ u <- Sys.setlocale("LC_ALL", "es_ES.UTF-8")
 #' @return regresa un vector de los montos deflactados
 #' @export
 deflactar_tp <- function(monto, year_monto, year_out) {
-  if (year_monto > 2027 |
-      year_monto < 1994) {
+  
+  year_mont <- as.numeric(year_monto)
+  
+  if (any(year_monto > 2030) |
+      any(year_monto < 1994)) {
     warning("year_monto supera el rango de años disponible. La cifra no fue deflactada.")
     
     return(monto)
@@ -24,18 +27,11 @@ deflactar_tp <- function(monto, year_monto, year_out) {
     
   }
   
-  if (year_out > 2027 |
-      year_out < 1994) {
-    warning("year_out supera el rango de años disponible. La cifra no fue deflactada.")
-    
-    return(monto)
-    
-    break
-    
-  }
+  year_out <- as.numeric(year_out)
   
-  if (year_out == year_monto) {
-    warning("year_out y year_monto son iguales.")
+  if (any(year_out > 2030) |
+      any(year_out < 1994)) {
+    warning("year_out supera el rango de años disponible. La cifra no fue deflactada.")
     
     return(monto)
     
