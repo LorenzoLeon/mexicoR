@@ -45,7 +45,7 @@ deflactar_tp <- function(monto, year_monto, year_out) {
   
   if (!exists("deflactor") ||
       !(c("year") %in% colnames(deflactor)) ||
-      !(c("deflactor_2013") %in% colnames(deflactor))) {
+      !(c("deflactor_year") %in% colnames(deflactor))) {
     temp = tempfile(fileext = ".xlsx")
     
     dataURL <-
