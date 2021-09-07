@@ -122,9 +122,9 @@ sum_pef_tp <- function(data, ...) {
   data %>%
     janitor::clean_names() %>%
     {
-      if (("id_ramo" %in% names(.)))
+      if ("id_ramo" %in% names(.))
         dplyr::mutate(.,
-                      id_ramo = as.numeric(id_ramo))
+                      id_ramo = as.character(id_ramo))
       else
         .
     } %>%
