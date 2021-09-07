@@ -14,7 +14,7 @@ u <- Sys.setlocale("LC_ALL", "es_ES.UTF-8")
 #' @return regresa un vector de los montos deflactados
 #' @export
 deflactar_tp <- function(monto, year_monto, year_out) {
-  if (year_monto > 2030 |
+  if (year_monto > 2027 |
       year_monto < 1994) {
     warning("year_monto supera el rango de años disponible. La cifra no fue deflactada.")
     
@@ -24,7 +24,7 @@ deflactar_tp <- function(monto, year_monto, year_out) {
     
   }
   
-  if (year_out > 2030 |
+  if (year_out > 2027 |
       year_out < 1994) {
     warning("year_out supera el rango de años disponible. La cifra no fue deflactada.")
     
@@ -54,7 +54,7 @@ deflactar_tp <- function(monto, year_monto, year_out) {
     download.file(dataURL, destfile = temp, mode = 'wb')
     
     deflactor <<- readxl::read_excel(temp,
-                                     range = "B4:O38") %>%
+                                     range = "B4:O42") %>%
       janitor::clean_names() %>%
       dplyr::rename(deflactor_year = starts_with("deflactor_del_pib")) %>%
       dplyr::transmute(year = as.numeric(periodo),
