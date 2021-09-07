@@ -122,6 +122,13 @@ sum_pef_tp <- function(data, ...) {
   data %>%
     janitor::clean_names() %>%
     {
+      if (("id_ramo" %in% names(.)))
+        dplyr::mutate(.,
+                      id_ramo = as.numeric(id_ramo))
+      else
+        .
+    } %>%
+    {
       if (!("periodo" %in% names(.)))
         dplyr::mutate(.,
                       periodo = as.character(ciclo))
@@ -279,14 +286,14 @@ sum_pef_tp <- function(data, ...) {
 #' @export
 bind_pef_tp <- function(lista_df, ...) {
   
-  purrr::map_dfr(lista_df, sum_pef, ...)
+  purrr::map_dfr(lista_df, sum_pef_tp, ...)
   
 }
 
 
 #' Agrupar lista de dataframes de presupuesto en formato wide
 #' 
-#' Esta función retoma la una función sum_pef (por lo cual le aplican las 
+#' Esta función retoma la una función sum_pef_tp (por lo cual le aplican las 
 #' mismas reglas) y la aplica a una lista de presupuesto. Esto ayuda cuando
 #' se quiere generar datos históricos del presupuesto en formato wide, los
 #' cuales normalmente están en diferentes archivos. 
@@ -321,7 +328,7 @@ bind_pef_tp <- function(lista_df, ...) {
 #' indicarse ninguna variable, sólo se colapsará por año fiscal. 
 #' @export
 bind_pef_tp_wide <- function(lista_df, ...) {
-  purrr::map_dfr(lista_df, sum_pef, ...) %>%
+  purrr::map_dfr(lista_df, sum_pef_tp, ...) %>%
     tidyr::pivot_wider(
       names_from = periodo,
       values_from = dplyr::contains(

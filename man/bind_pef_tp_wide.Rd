@@ -20,7 +20,7 @@ dataframe colapsado por las variables indicadas. En caso de no
 indicarse ninguna variable, sólo se colapsará por año fiscal.
 }
 \description{
-Esta función retoma la una función sum_pef (por lo cual le aplican las 
+Esta función retoma la una función sum_pef_tp (por lo cual le aplican las 
 mismas reglas) y la aplica a una lista de presupuesto. Esto ayuda cuando
 se quiere generar datos históricos del presupuesto en formato wide, los
 cuales normalmente están en diferentes archivos. 
