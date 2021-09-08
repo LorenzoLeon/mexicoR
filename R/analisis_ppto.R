@@ -202,7 +202,7 @@ sum_pef_tp <- function(data, ...) {
         mutate(
           .,
           tipo_de_gasto = case_when(
-            id_ramo %in% c(24, 28, 30, 34) ~ "No rogramable",
+            id_ramo %in% c(24, 28, 30, 34) ~ "No programable",
             id_ramo %in% c(52, 53) &
               id_capitulo == 9000 ~ "No programable",
             T ~ "Programable"
@@ -228,6 +228,7 @@ sum_pef_tp <- function(data, ...) {
     } %>%
     # dplyr::select(-dplyr::contains("mensual")) %>%
     rename(
+      proyecto = dplyr::contains(c("proyec")),
       aprobado = dplyr::contains(c("aprobado")),
       modificado = dplyr::contains("modificado"),
       pagado = dplyr::contains("pagado"),
@@ -236,6 +237,7 @@ sum_pef_tp <- function(data, ...) {
     dplyr::summarise_if(is.numeric, sum, na.rm = T) %>%
     dplyr::select(..., periodo, dplyr::contains(
       c(
+        "proyecto",
         "aprobado",
         "modificado",
         "pagado",
